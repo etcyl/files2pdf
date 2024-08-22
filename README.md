@@ -34,6 +34,7 @@ Make sure you have Python 3 installed.
 ## Example Usage
 
 You can upload files like:
+
     **Images:** 
         .png, .jpg, .jpeg
     **Text Files:** 
