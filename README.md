@@ -1,6 +1,7 @@
 # Flask PDF Merger
 
 This Flask-based application allows you to merge multiple files (images and text files) into a single PDF. The app supports various file types including .png, .jpg, and .txt and provides a user-friendly interface via a web browser.
+
 Features
     **Supported File Types**: Merge .png, .jpg, .jpeg, and .txt files into a single PDF.
     **Automatic Encoding Detection**: Handles text files with different encodings (e.g., UTF-8, ISO-8859-1).
