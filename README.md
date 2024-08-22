@@ -30,18 +30,8 @@ Make sure you have Python 3 installed.
         http://127.0.0.1:5000
 
     Upload the files you want to merge and click the "Merge Files" button. The merged PDF will be automatically downloaded.
-
-## Example Usage
-
-You can upload files like:
-
-    **Images:** 
-        .png, .jpg, .jpeg
-    **Text Files:** 
-        .txt
-
-The application merges these files into a single PDF, maintaining the order of upload.
-The final merged PDF is saved to the uploads/ directory within the project folder, and the filename is merged_output.pdf.
+    The application merges these files into a single PDF, maintaining the order of upload.
+    The final merged PDF is saved to the uploads/ directory within the project folder, and the filename is merged_output.pdf.
 
 # Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
