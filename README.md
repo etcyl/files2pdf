@@ -19,11 +19,11 @@ Make sure you have Python 3 installed.
 ## How to Run the Application
     Clone or download this repository.
     Navigate to the project folder.
-    ```cd pdfmerge```
+        cd pdfmerge
     Run the Flask application:
-    ```python app.py```
+        python app.py
     Open your web browser and navigate to:
-    ```http://127.0.0.1:5000```
+        http://127.0.0.1:5000
     Upload the files you want to merge and click the "Merge Files" button. The merged PDF will be automatically downloaded.
 
 ## Example Usage
