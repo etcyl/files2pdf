@@ -14,14 +14,6 @@ Make sure you have Python 3 installed.
 ## Install the required packages:
   ```pip install flask pillow fpdf```
 
-## Project Structure
-pdfmerge/
-  │
-  ├── app.py                  # Main Flask application
-  ├── templates/
-  │   └── index.html          # HTML template for the file upload page
-  └── uploads/                # Directory for storing uploaded files temporarily
-
 ## How to Run the Application
     **Clone or download this repository.**
     **Navigate to the project folder.**
@@ -39,6 +31,7 @@ You can upload files like:
     **Text Files:** .txt
 
 The application merges these files into a single PDF, maintaining the order of upload.
+The final merged PDF is saved to the uploads/ directory within the project folder, and the filename is merged_output.pdf.
 
 # Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
