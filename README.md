@@ -18,6 +18,7 @@ Make sure you have Python 3 installed.
 
 ## How to Run the Application
     Clone or download this repository.
+        git clone https://github.com/etcyl/files2pdf/
     Navigate to the project folder.
         cd pdfmerge
     Run the Flask application:
