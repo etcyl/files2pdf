@@ -34,8 +34,10 @@ Make sure you have Python 3 installed.
 ## Example Usage
 
 You can upload files like:
-    **Images:** .png, .jpg, .jpeg
-    **Text Files:** .txt
+    **Images:** 
+        .png, .jpg, .jpeg
+    **Text Files:** 
+        .txt
 
 The application merges these files into a single PDF, maintaining the order of upload.
 The final merged PDF is saved to the uploads/ directory within the project folder, and the filename is merged_output.pdf.
