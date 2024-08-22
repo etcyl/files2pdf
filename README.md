@@ -33,11 +33,12 @@ Make sure you have Python 3 installed.
     The application merges these files into a single PDF, maintaining the order of upload.
     The final merged PDF is saved to the uploads/ directory within the project folder, and the filename is merged_output.pdf.
 
-# Error Handling
+## Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
     Invalid file types are ignored, ensuring smooth operation.
 
-Future Enhancements
+## Future Enhancements
+
     Support for more file types (e.g., .docx, .pdf).
     Option to customize PDF output (e.g., page size, orientation).
     Drag-and-drop support for file uploads.
