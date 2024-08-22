@@ -4,10 +4,10 @@ This Flask-based application allows you to merge multiple files (images and text
 
 Features
 
-    **Supported File Types**: Merge .png, .jpg, .jpeg, and .txt files into a single PDF.
-    **Automatic Encoding Detection**: Handles text files with different encodings (e.g., UTF-8, ISO-8859-1).
-    **User-Friendly Interface**: Web-based interface for uploading and merging files.
-    **Responsive Design**: Simple and clean UI using modern web styling.
+    Supported File Types: Merge .png, .jpg, .jpeg, and .txt files into a single PDF.
+    Automatic Encoding Detection: Handles text files with different encodings (e.g., UTF-8, ISO-8859-1).
+    User-Friendly Interface: Web-based interface for uploading and merging files.
+    Responsive Design: Simple and clean UI using modern web styling.
 
 ## Prerequisites
 
@@ -17,14 +17,14 @@ Make sure you have Python 3 installed.
   ```pip install flask pillow fpdf```
 
 ## How to Run the Application
-    **Clone or download this repository.**
-    **Navigate to the project folder.**
+    Clone or download this repository.
+    Navigate to the project folder.
     ```cd pdfmerge```
-    **Run the Flask application:**
+    Run the Flask application:
     ```python app.py```
-    **Open your web browser and navigate to:**
+    Open your web browser and navigate to:
     ```http://127.0.0.1:5000```
-    **Upload the files you want to merge and click the "Merge Files" button. The merged PDF will be automatically downloaded.**
+    Upload the files you want to merge and click the "Merge Files" button. The merged PDF will be automatically downloaded.
 
 ## Example Usage
 
