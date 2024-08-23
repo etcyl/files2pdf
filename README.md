@@ -1,4 +1,4 @@
-![Alt text](./test_images/test_image1.png)
+![Initial setup after uploading files.](./test_images/test_image1.png)
 
 
 # Flask PDF Merger
