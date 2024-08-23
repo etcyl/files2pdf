@@ -42,6 +42,7 @@ Make sure you have Python 3 installed.
 <p align="center">
   <img src="test_images/test_img2.png" alt="Post setup after merging files." width="400" />
 </p>
+
 ## Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
     Invalid file types are ignored, ensuring smooth operation.
