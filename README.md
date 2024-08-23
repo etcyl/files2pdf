@@ -1,4 +1,4 @@
-![Initial setup after uploading files.](test_images/test_image1.png)
+![Initial setup after uploading files.](test_images/test_img1.png)
 
 
 # Flask PDF Merger
@@ -38,6 +38,8 @@ Make sure you have Python 3 installed.
     The application merges these files into a single PDF, maintaining the order of the files as displayed in the list.
     The final merged PDF is saved to the output_pdfs/ directory within the project folder with the filename you specify in the input field.
     A progress bar displays the remaining amount of work during the merge process.
+
+![Post setup after merging files.](test_images/test_img2.png)
 
 ## Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
