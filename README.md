@@ -16,6 +16,9 @@ The app supports various file types including .png, .jpg, .jpeg, .txt, and .pdf,
     Progress Indicator: Displays a progress bar with a fun animated dog icon that moves as the merging progresses.
     Responsive Design: Simple and clean UI using modern web styling, including mobile-friendly layout.
 
+## Running from executable
+After downloading the project folder, run the app.exe in the dist/ folder.
+
 ## Commandline prerequisites
 
 Make sure you have Python 3 installed.
