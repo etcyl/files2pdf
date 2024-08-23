@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,21 +16,36 @@
             height: 100vh;
             margin: 0;
         }
+
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 400px;
+            position: relative;
         }
+
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         input[type="file"] {
             margin: 20px 0;
             font-size: 16px;
         }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         button {
             background-color: #007bff;
             color: white;
@@ -40,19 +56,218 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #0056b3;
         }
+
+        .file-list {
+            max-height: 150px;
+            overflow-y: auto;
+            text-align: left;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .file-item span {
+            flex: 1;
+            max-width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-item button {
+            margin-left: 5px;
+            padding: 2px 5px;
+            font-size: 14px;
+        }
+
+        #progress-container {
+            display: none;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #progress-bar {
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+        #progress-bar-inner {
+            background: #007bff;
+            height: 100%;
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        #progress-text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #dog-container {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            pointer-events: none;
+        }
+
+        #dog {
+            position: absolute;
+            font-size: 30px;
+            transform: scaleX(-1); /* Flip the dog horizontally */
+        }
+
+        #finish-flag {
+            position: absolute;
+            top: -30px;
+            right: -10px;
+            font-size: 20px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Merge Files to PDF</h1>
-        <form method="POST" enctype="multipart/form-data">
+        <form id="merge-form" method="POST" enctype="multipart/form-data">
             <input type="file" name="files" multiple>
+            <div class="file-list">
+                <!-- Placeholder for dynamically added file items -->
+            </div>
+            <input type="text" name="output_filename" placeholder="Output filename (e.g., merged_output.pdf)">
             <button type="submit">Merge Files</button>
         </form>
-    </div>
-</body>
-</html>
 
+        <!-- Progress Bar -->
+        <div id="progress-container">
+            <div id="dog-container">
+                <div id="dog">🐕</div> <!-- Flipped dog emoticon -->
+                <div id="finish-flag">🏁</div> <!-- Finish flag icon -->
+            </div>
+            <div id="progress-bar">
+                <div id="progress-bar-inner"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.querySelector('input[type="file"]');
+        const fileListContainer = document.querySelector('.file-list');
+        const form = document.getElementById("merge-form");
+        const progressBarContainer = document.getElementById("progress-container");
+        const progressBarInner = document.getElementById("progress-bar-inner");
+        const progressText = document.getElementById("progress-text");
+        const dog = document.getElementById("dog");
+        const finishFlag = document.getElementById("finish-flag");
+
+        let fileList = [];
+
+        function updateFileListUI() {
+            fileListContainer.innerHTML = ''; // Clear existing items
+            fileList.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.classList.add('file-item');
+
+                const fileNameSpan = document.createElement('span');
+                fileNameSpan.textContent = file.name;
+
+                const upButton = document.createElement('button');
+                upButton.textContent = '↑';
+                upButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent form submission
+                    if (index > 0) {
+                        [fileList[index], fileList[index - 1]] = [fileList[index - 1], fileList[index]];
+                        updateFileListUI();
+                    }
+                });
+
+                const downButton = document.createElement('button');
+                downButton.textContent = '↓';
+                downButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent form submission
+                    if (index < fileList.length - 1) {
+                        [fileList[index], fileList[index + 1]] = [fileList[index + 1], fileList[index]];
+                        updateFileListUI();
+                    }
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'X';
+                deleteButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent form submission
+                    fileList = fileList.filter((_, i) => i !== index);
+                    updateFileListUI();
+                });
+
+                fileItem.appendChild(fileNameSpan);
+                fileItem.appendChild(upButton);
+                fileItem.appendChild(downButton);
+                fileItem.appendChild(deleteButton);
+                fileListContainer.appendChild(fileItem);
+            });
+
+            // Update the file input field with the correct files
+            const dataTransfer = new DataTransfer();
+            fileList.forEach((file) => {
+                dataTransfer.items.add(file);
+            });
+            fileInput.files = dataTransfer.files;
+        }
+
+        fileInput.addEventListener('change', () => {
+            fileList = Array.from(fileInput.files);
+            updateFileListUI();
+        });
+
+        form.addEventListener('submit', (event) => {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Show progress bar
+            progressBarContainer.style.display = "block";
+
+            // Move the dog across the progress bar
+            const dogMoveInterval = setInterval(() => {
+                const progressWidth = progressBarInner.clientWidth;
+                dog.style.left = `${Math.min(progressWidth - 15, finishFlag.offsetLeft - 35)}px`; // Adjust the dog's position relative to the finish flag
+            }, 100);
+
+            // Simulate progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBarInner.style.width = `${progress}%`;
+                progressText.textContent = `${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    clearInterval(dogMoveInterval);
+                    progressText.textContent = "Completed!";
+                    dog.style.left = `${finishFlag.offsetLeft - 35}px`; // Position dog near the finish flag
+                    form.submit(); // Submit the form after the progress completes
+                }
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>
