@@ -1,6 +1,7 @@
 <p align="center">
   <img src="test_images/test_img1.png" alt="Initial setup after uploading files." width="400" />
 </p>
+
 # Flask PDF Merger
 
 This Flask-based application allows you to merge multiple files (images, text files, and PDFs) into a single PDF. 
