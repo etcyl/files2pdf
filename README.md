@@ -1,4 +1,6 @@
-![Initial setup after uploading files.](test_images/test_img1.png)
+<p align="center">
+  <img src="test_images/test_img1.png" alt="Initial setup after uploading files." width="400" />
+</p>
 
 
 # Flask PDF Merger
