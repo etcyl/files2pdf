@@ -1,8 +1,6 @@
 <p align="center">
   <img src="test_images/test_img1.png" alt="Initial setup after uploading files." width="400" />
 </p>
-
-
 # Flask PDF Merger
 
 This Flask-based application allows you to merge multiple files (images, text files, and PDFs) into a single PDF. 
@@ -41,8 +39,9 @@ Make sure you have Python 3 installed.
     The final merged PDF is saved to the output_pdfs/ directory within the project folder with the filename you specify in the input field.
     A progress bar displays the remaining amount of work during the merge process.
 
-![Post setup after merging files.](test_images/test_img2.png)
-
+<p align="center">
+  <img src="test_images/test_img2.png" alt="Post setup after merging files." width="400" />
+</p>
 ## Error Handling
     The application handles text files with various encodings, such as UTF-8 and ISO-8859-1, to prevent decoding errors.
     Invalid file types are ignored, ensuring smooth operation.
